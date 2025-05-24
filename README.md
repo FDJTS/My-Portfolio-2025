@@ -1,6 +1,6 @@
 # Zyad Mohamed | Personal Portfolio Website
 
-Welcome to the personal website of Ziad Mohamed!  
+Welcome to the personal website of Zyad Mohamed!  
 This site showcases my profile, projects, public comments, and allows you to contact me directly.
 
 ---
@@ -60,7 +60,7 @@ This site showcases my profile, projects, public comments, and allows you to con
 - Header image in every page (`images/header.jpg`)
 - Welcome image on the home page (`images/welcome.jpg`)
 - Profile photo (`profile.jpg`)
-- Custom images for each section (you can change as you like)
+- Custom images for each section
 
 ---
 
