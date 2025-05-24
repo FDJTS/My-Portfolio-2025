@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zyad Mohamed | Web Developer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <header>
+    <div class="header-bg">
+      <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80" alt="Code Background" />
+    </div>
+    <div class="logo">
+      <img id="profileImg" src="https://avatars.githubusercontent.com/u/141354010?v=4" alt="Zyad Mohamed Logo" class="logo-img">
+      <span id="profileName">Zyad Mohamed</span>
+    </div>
+    <nav>
+      <ul id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="comments.html">Comments</a></li>
+        <li id="signInNav"><a href="login.html">Sign In</a></li>
+        <li id="signUpNav"><a href="register.html">Sign Up</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li>
+          <button id="modeToggle" aria-label="Toggle dark mode">🌓</button>
+        </li>
+      </ul>
+    </nav>
+    <div id="welcomeUser" class="welcome-user"></div>
+  </header>
+  <main>
+    <section class="welcome-section fade-in">
+      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=900&q=80" alt="Welcome" class="welcome-img animate-pop">
+      <h2>Welcome to My Portfolio</h2>
+      <p>
+        I'm Zyad Mohamed, a passionate web developer. Here you'll find my latest projects, public comments, and a way to contact me directly. I specialize in building modern, responsive websites and web apps. I love sharing knowledge and collaborating with others. Explore my work, leave your feedback, and feel free to reach out!
+      </p>
+    </section>
+    <section class="profile-section fade-in">
+      <img id="mainProfileImg" src="https://avatars.githubusercontent.com/u/141354010?v=4" alt="Zyad Mohamed" class="profile-img animate-pop">
+      <div>
+        <h3>About Me</h3>
+        <p>
+          Experienced in JavaScript, PHP, and modern frameworks. I enjoy solving complex problems and creating beautiful, interactive user experiences. My portfolio showcases a variety of projects, from web apps to open-source contributions.
+        </p>
+      </div>
+    </section>
+    <section class="comments-preview fade-in">
+      <h3>Latest Comments</h3>
+      <div id="commentsList"></div>
+      <a href="comments.html" class="btn">View All & Add Yours</a>
+    </section>
+    <section class="projects-preview fade-in">
+      <h3>Featured Projects</h3>
+      <div class="projects-grid">
+        <div class="project-card animate-pop">
+          <img src="https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png" alt="JS Project">
+          <h4>Modern JS App</h4>
+          <p>A fast, interactive web app built with vanilla JavaScript and ES6 modules.</p>
+          <a href="https://github.com/fdjts/My-Portfolio-2025" target="_blank">View on GitHub</a>
+        </div>
+        <div class="project-card animate-pop">
+          <img src="https://raw.githubusercontent.com/github/explore/main/topics/php/php.png" alt="PHP Project">
+          <h4>PHP Blog Engine</h4>
+          <p>Lightweight blog engine with PHP, supporting Markdown and comments.</p>
+          <a href="https://github.com/fdjts/My-Portfolio-2025" target="_blank">View on GitHub</a>
+        </div>
+        <div class="project-card animate-pop">
+          <img src="https://raw.githubusercontent.com/github/explore/main/topics/html/html.png" alt="Portfolio">
+          <h4>Responsive Portfolio</h4>
+          <p>My personal portfolio, fully responsive and animated, built with HTML/CSS/JS.</p>
+          <a href="https://github.com/fdjts/My-Portfolio-2025" target="_blank">View on GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Zyad Mohamed &mdash; <a href="https://fdjts.github.io/My-Portfolio-2025/" target="_blank">GitHub Portfolio</a>
+  </footer>
+  <script src="main.js"></script>
+  <script>
+    // Show welcome message and profile if logged in
+    function updateProfileUI() {
+      const user = JSON.parse(localStorage.getItem('zyad_user') || 'null');
+      if (user && user.name) {
+        document.getElementById('welcomeUser').innerHTML = `Welcome, <b>${user.name}</b>!`;
+        document.getElementById('profileName').textContent = user.name;
+        document.getElementById('profileImg').src = user.picture || "https://avatars.githubusercontent.com/u/141354010?v=4";
+        document.getElementById('mainProfileImg').src = user.picture || "https://avatars.githubusercontent.com/u/141354010?v=4";
+        document.getElementById('signInNav').style.display = "none";
+        document.getElementById('signUpNav').style.display = "none";
+      } else {
+        document.getElementById('welcomeUser').innerHTML = "";
+        document.getElementById('profileName').textContent = "Zyad Mohamed";
+        document.getElementById('profileImg').src = "https://avatars.githubusercontent.com/u/141354010?v=4";
+        document.getElementById('mainProfileImg').src = "https://avatars.githubusercontent.com/u/141354010?v=4";
+        document.getElementById('signInNav').style.display = "";
+        document.getElementById('signUpNav').style.display = "";
+      }
+    }
+    updateProfileUI();
+
+    // Fetch comments from PHP and render
+    fetch('comments.php')
+      .then(res => res.json())
+      .then(comments => {
+        const list = document.getElementById('commentsList');
+        list.innerHTML = '';
+        comments.reverse().forEach(c => {
+          const div = document.createElement('div');
+          div.className = 'comment-item fade-in';
+          div.innerHTML = `
+            <span class="comment-author">${c.name}</span>
+            <span class="comment-date">${new Date(c.date).toLocaleString()}</span>
+            <div class="comment-text">${c.text.replace(/</g, "&lt;")}</div>
+          `;
+          list.appendChild(div);
+        });
+      });
+  </script>
+</body>
+</html>
