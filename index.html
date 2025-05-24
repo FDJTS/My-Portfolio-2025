@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>زياد محمد | مطور ويب</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="images/header.jpg" alt="صورة هيدر" style="width:100%;max-height:200px;object-fit:cover;">
+    <h1>زياد محمد</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="project.html">مشاريعي</a></li>
+        <li><a href="comment.html">التعليقات</a></li>
+        <li><a href="login.html" id="loginLink">تسجيل الدخول</a></li>
+        <li><a href="register.html" id="registerLink">تسجيل حساب جديد</a></li>
+        <li><a href="contact.html">تواصل</a></li>
+        <li>
+          <select id="lang" aria-label="تغيير اللغة">
+            <option value="ar">العربية</option>
+          </select>
+        </li>
+        <li>
+          <button id="modeToggle" aria-label="تغيير الوضع الليلي">🌓</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <img src="images/welcome.jpg" alt="صورة ترحيبية" style="width:100%;max-width:400px;display:block;margin:auto;">
+      <h2 id="welcomeMsg">أهلاً بيك في موقعي</h2>
+      <p>أنا زياد محمد، مبرمج ومطور مواقع. هنا هتلاقي مشاريعي وتعليقات الزوار وأكواد بلغات مختلفة.</p>
+    </section>
+    <img src="profile.jpg" alt="صورة زياد" style="width:200px; border-radius:50%;display:block;margin:auto;">
+    <section>
+      <h3>آخر التعليقات</h3>
+      <ul id="commentsList"></ul>
+      <form id="commentForm">
+        <textarea id="commentText" placeholder="اكتب تعليقك هنا..." required></textarea>
+        <button type="submit">إرسال التعليق</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 زياد محمد
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>
